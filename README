@@ -1,0 +1,79 @@
+/*
+ * Name: Ji Eun Han
+ * Assignment: Project 04
+ * Section: TR 9:40am
+ * Lab TA: Chengyu Deng, Matt Delsordo
+ * I collaborated with Mackenzie Lee. 
+ */
+ 
+ README
+ 
+ Contact: jhan46@u.rochester.edu
+ Partner's Name: Mackenzie Lee
+ 
+ The main methods called in the TestClass where it takes in the user arguments in the command line 
+ is the Graph class. There are various methods in the class called in the TestClass class, but the 
+ createfromFile method creates a graph from the data collected from the coordinates text files like 
+ ur.txt, nys.txt or monroe.txt. This takes in the format of i/r whether it's an intersection or a road
+ (in this case a vertex or an edge). For intersections, we collect the latitude and longitude then 
+ stores them in a Node or vertex while calling the Node class and then places the name (which is the
+ next tab in the input format something like i30) of the vertex as well as the node that we've just 
+ created in a HashMap. For roads, we take in two intersections as seen in order in the input format
+ and stores them into a hashmap after getting the distance or weight in between the two intersections
+ by calling the getDistance() method and storing into hashmap via insertlist() method. 
+ 
+ In order to find the minimum spanning tree, we incorporated the Prim's algorithm in order to calculate
+ how to visit all nodes in a minimum distance. Prim's Algorithm works by starting at a node/vertex and moving to the
+ least weighted path based on all available adjacent node connections. This is a greedy algorithm. 
+ Runtime is O(|E|log|V|) because O(VlogV + ElogV) = O((E+V)logV)=O(ElogV)
+ Using the priority queue/binary heap and adjacency list with the run time of binary heap being VlogV 
+ and adjacency list being ElogV. The number of edges is always greater than or equal to the number of vertices
+ so V is chosen in place of E for the runtime. In order to find the shortest path, 
+ we have incorporated the dijkstra's algorithm to calculate the series
+ of edges with the smallest distance value. Runtime is O(ElogV). The delete operation for the priority queue/heap 
+ takes O(logV) time since there are V operations. The priority queue is also built in O(V) time. 
+ The bubble down operation takes O(logV) so the runtime can become O(ElogV). 
+ 
+ The biggest struggle was figuring out the meridian map function, using the minimum spanning tree and Prim's 
+ algorithm. Mainly because this was an unfamiliar algorithm that wasn't introduced in the class lectures 
+ but in that we had no idea how to implement it in our code. But luckily the help from the site in Emory, Princeton
+ and various other websites that we have cited in the Graph class right above the primAlgorithm method 
+ were great sources that provided a basis of where we can start off our codes from. 
+ 
+ The package includes an Edge class with the name of the edge(path), then the name of the two vertices or the nodes.
+ This class includes a constructor as well as the necessary compareTo method. There's also a Node class where we have 
+ the constructor with the name of the node(intersection), a temporary integer variable, then a double value of longitude
+ and latitude and also the necessary compareTo method that compares the nodes. MapNode is similar but this is a node class 
+ for the graph making. The constructor for the MapNode only includes the ID or the node name and the number of connections 
+ on each mapnode. This includes an insert method where it inserts a new mapnode depending on whether or not the tree is empty
+ as well as getWeight method to get the distance between the mapnode and the node its comparing to. getConenction method 
+ retrieves the connections this mapnode has by calling the auxilary method recursively. As well as the default compareto method 
+ that compares the distance/weight of the Mapnodes. The package also includes PQueue class where it includes the required 
+ methods of priority queue called in the Graph then TestClass like add, size, poll that all use the heapify method. 
+ Canvas class includes all the drawing method of paintComponent, and the edgePainter where it paints the edges or the 
+ roads so the map is visible by iterating through the hashmap. The meridianMap is where it draws by iterating through all the 
+ edges so it draws out a path of minimum weight that visits all the nodes. The dijkstraPath method iterates through all the
+ nodes or vertices in a way so it draws the shortest path from point A to point B. 
+ 
+ Graph class is the class that calls all the other classes and methods in the other classes. It includes the constructor,
+ with simple methods in which it retrieves whether the graph is directed or not, the number of roads or edges, and to set
+ the number or nodes. There's a createFromFile() method that creates the graph from the text files with the coordinate information
+ of the road and intersections. These are from ur.txt, nys.txt or monroe.txt file outside of the package that was given 
+ by the assignment. This takes in the format of the text files by saving the inputs by tabs and new lines into variables 
+ later used to store in hashmaps. The first part is for intersection and once it breaks out of the while look when the 
+ first letter equals r then continues to saving the variables like road name and intersection points. InsertList method 
+ inserts the nodes into hashmaps while the getDistance method retrieves and calculates the distance between the nodes 
+ from latitude and longitude to in terms of miles based on the distance formula. PrimAlgorithm method is to find the minimum
+ weight spanning tree where it calls the priorityEdgeInsert method and the runtime is explained above. The dijkstraAlgorithm 
+ method is similar but in that it's for finding the shortest path for the weighted graphs. The runtime for this operation 
+ is also explained above. MinimumWeightTree and ShortestPath methods are to set up the graphics for what we've resulted with 
+ from the calculation and saving method earlier on. PrintDistance prints the total distance between the start and destination.
+ PrintPath method prints each node name that the program goes through from point A to point B. The TestClass includes the instructions
+ of what the input style is as well as to save each arguments into variables taken in the graph class. 
+   
+ 
+ 
+  
+ 
+ 
+ 
